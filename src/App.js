@@ -1,23 +1,26 @@
+import { useState, useEffect } from 'react';
+
 import logo from './logo.svg';
 import './App.css';
-
+const BASE_URL = 'https://mentoringapplive.herokuapp.com/';
 function App() {
+  const [tweets, setTweets] = useState([]);
+  useEffect(() => {
+    const fetchTweets = async () => {
+      const response = await fetch('BASE_URL/tweets');
+      const json = await response.json();
+      setTweets(json);
+    }
+    fetchTweets()
+  }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Hello world
-        </a>
-      </header>
+      <div>Tweet list </div>
+      {tweets.length && tweets.map((tweet) => (
+        <div key={tweet.id}>
+          {JSON.stringify(tweet)}
+        </div>)
+      )}
     </div>
   );
 }
