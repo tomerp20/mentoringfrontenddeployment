@@ -6,7 +6,7 @@ function App() {
   const [tweets, setTweets] = useState([]);
   useEffect(() => {
     const fetchTweets = async () => {
-      const response = await fetch(`${BASE_URL}/tweets`);
+      const response = await fetch(`${BASE_URL}tweets`);
       const json = await response.json();
       setTweets(json);
     }
