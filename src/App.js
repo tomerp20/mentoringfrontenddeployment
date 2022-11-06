@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
 
-import logo from './logo.svg';
 import './App.css';
 const BASE_URL = 'https://mentoringapplive.herokuapp.com/';
 function App() {
   const [tweets, setTweets] = useState([]);
   useEffect(() => {
     const fetchTweets = async () => {
-      const response = await fetch('BASE_URL/tweets');
+      const response = await fetch(`${BASE_URL}/tweets`);
       const json = await response.json();
       setTweets(json);
     }
